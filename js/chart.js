@@ -126,11 +126,25 @@ var chart = AmCharts.makeChart("chartdiv", {
         else
           $("#negative").html("<p>Sorry... Nothing found</p>");
 
-        $("span.vote").click(function(e) {
-          if ($(this).hasClass('text-primary'))
-            console.log("You unvoted " + e.target.parentElement.getAttribute("article-id"));
-          else
-            console.log("You voted " + e.target.parentElement.getAttribute("article-id"));
+        $("span.upvote, span.downvote").click(function(e) {
+          var id = e.target.parentElement.getAttribute("article-id");
+          if ($(this).hasClass('upvote text-primary') || $(this).not('.text-primary').hasClass('downvote')) {
+            console.log("You downvoted " + id);
+            $.ajax({
+              url: "https://api.mlab.com/api/1/databases/stock_advisor/collections/news/" + id + "?apiKey=ag0Rk7g_YEg5Eq6tsmuQQdHjH7KlVm5t",
+              data: JSON.stringify({"$inc": {"vote": -1}}),
+              type: "PUT",
+              contentType: "application/json"
+            });
+          } else {
+            console.log("You upvoted " + id);
+            $.ajax({
+              url: "https://api.mlab.com/api/1/databases/stock_advisor/collections/news/" + id + "?apiKey=ag0Rk7g_YEg5Eq6tsmuQQdHjH7KlVm5t",
+              data: JSON.stringify({"$inc": {"vote": 1}}),
+              type: "PUT",
+              contentType: "application/json"
+            });
+          }
           $(this).toggleClass('text-primary');
         });
 
