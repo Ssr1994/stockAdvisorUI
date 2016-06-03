@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Advisor</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <script type="text/javascript" src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+    <script type="text/javascript" src="https://www.amcharts.com/lib/3/serial.js"></script>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div id="loading"></div>
+    <div id="page-wrapper">
+        <div class="row" id="main-title">
+            <div class="col-sm-12">
+                <h1><strong>Stock Advisor </strong><small>Suggestions and more...</small></h1>
+            </div>
+        </div>
+        <div class="row">
+            <form>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="keyword" placeholder="e.g., Microsoft">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" id="searchBtn" type="submit">Search</button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-sm-8">
+                    <label class="checkbox-inline">
+                        <input class="newsChoice" type="checkbox" id="cnn" value="cnn"> CNN
+                    </label>
+                    <label class="checkbox-inline">
+                        <input class="newsChoice" type="checkbox" id="foxnews" value="Fox News"> Fox News
+                    </label>
+                    <label class="checkbox-inline">
+                        <input class="newsChoice" type="checkbox" id="latimes" value="LATimes"> LA Times
+                    </label>
+                    <label class="checkbox-inline">
+                        <input class="newsChoice" type="checkbox" id="nytimes" value="NYTimes"> NY Times
+                    </label>
+                    <label class="checkbox-inline">
+                        <input class="newsChoice" type="checkbox" id="wp" value="WP"> Washington Post
+                    </label>
+                    <label class="checkbox-inline">
+                        <input class="newsChoice" type="checkbox" id="wsj" value="WSJ"> WSJ
+                    </label>
+                </div>
+            </form>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Stats<span id="query"></span>
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div id="chartdiv" style="height: 100%; background-color: #FFFFFF;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Positive News Articles
+                        </h3>
+                    </div>
+                    <div id="positive" style="overflow:auto" class="panel-body feed">
+                        <p class="text-primary">Click on the chart, and positive news about the company will be displayed here...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Negative News Articles
+                        </h3>
+                    </div>
+                    <div id="negative" style="overflow:auto" class="panel-body feed">
+                        <p class="text-primary">Click on the chart, and negative news about the company will be displayed here...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/chart.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+</body>
+
+</html>
